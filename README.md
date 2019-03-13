@@ -34,20 +34,20 @@ Both the training data and testing data are aligned by the method described in [
 
 The figure shows three strategies in different purposes. At the beginning of the training process, we focus on all samples; then we focus on easy/clean samples; at last we focus on semi-hard clean samples.
 
-![The strategy](https://gitlab.yunshitu.cn/HarryWong/ad/raw/master/figures/strategy.png)
+![The strategy](https://raw.githubusercontent.com/huangyangyu/NoiseFace/master/figures/strategy.png)
   
 
 The figure explains the fusion function of three strategies. The left part demonstrates three functions: **&alpha;(&delta;<sub>r</sub>)**, **&beta;(&delta;<sub>r</sub>)**, and **&gamma;(&delta;<sub>r)**. The right part shows two fusion examples. According to the **&omega;**, we can see that the easy/clean samples are emphasized in the first example(**&delta;<sub>r</sub>** < 0.5), and the semi-hard clean samples are emphasized in the second example(**&delta;<sub>r</sub>** > 0.5).
 **For more detail, please click the figure to play demo video.**
-[![The demo video](https://gitlab.yunshitu.cn/HarryWong/ad/raw/master/figures/detail.png)](https://gitlab.yunshitu.cn/HarryWong/ad/raw/master/figures/cvpr2019_paperid5518_demo.mp4)
+[![The demo video](https://raw.githubusercontent.com/huangyangyu/NoiseFace/master/figures/figures/detail.png)](https://gitlab.yunshitu.cn/HarryWong/ad/raw/master/figures/cvpr2019_paperid5518_demo.mp4)
   
 
 The figure shows the 2D Hist<sub>all</sub> of CNN<sub>common</sub> (up) and CNN<sub>m2</sub> (down) under 40% noise rate.
-![The 2D Hist](https://gitlab.yunshitu.cn/HarryWong/ad/raw/master/figures/webface_dist_2D_noise-40.png)
+![The 2D Hist](https://raw.githubusercontent.com/huangyangyu/NoiseFace/master/figures/webface_dist_2D_noise-40.png)
   
 
 The figure shows the 3D Hist<sub>all</sub> of CNN<sub>common</sub> (left) and CNN<sub>m2</sub> (right) under 40% noise rate.
-![The 3D Hist](https://gitlab.yunshitu.cn/HarryWong/ad/raw/master/figures/webface_dist_3D_noise-40.png)
+![The 3D Hist](https://raw.githubusercontent.com/huangyangyu/NoiseFace/master/figures/webface_dist_3D_noise-40.png)
 
 ### Performance
 
