@@ -1,6 +1,9 @@
 # Noise-Tolerant Paradigm for Training Face Recognition CNNs
 
 Paper link: https://arxiv.org/abs/???
+Presented at CVPR 2019
+This is the code for the paper
+
 
 ### Contents
 1. [Requirements](#requirements)
