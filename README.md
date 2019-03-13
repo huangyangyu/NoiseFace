@@ -77,7 +77,17 @@ Note: The WebFace-Clean-Sub is the clean part of the WebFace-All, the WebFace-Al
 
 ### Citation
 
-  Waiting
+If you find this work useful in your research, please cite  
+```text
+@inproceedings{Hu2019NoiseFace,
+  title = {Noise-Tolerant Paradigm for Training Face Recognition CNNs},
+  author = {Hu, Wei and Huang, Yangyu and Zhang, Fan and Li, Ruirui},
+  booktitle = {IEEE Conference on Computer Vision and Pattern Recognition},
+  month = {June},
+  year = {2019},
+  address = {Long Beach, CA}
+}
+```
 
 
 ### License
