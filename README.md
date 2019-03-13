@@ -38,7 +38,7 @@ The figure shows three strategies in different purposes. At the beginning of the
   
 
 The figure explains the fusion function of three strategies. The left part demonstrates three functions: **&alpha;(&delta;<sub>r</sub>)**, **&beta;(&delta;<sub>r</sub>)**, and **&gamma;(&delta;<sub>r)**. The right part shows two fusion examples. According to the **&omega;**, we can see that the easy/clean samples are emphasized in the first example(**&delta;<sub>r</sub>** < 0.5), and the semi-hard clean samples are emphasized in the second example(**&delta;<sub>r</sub>** > 0.5).
-**For more detail, please click the figure to play demo video.**
+**For more detail, please click the figure to play [demo video](https://youtu.be/FxRoN_i7FLw).**
 [![The demo video](https://raw.githubusercontent.com/huangyangyu/NoiseFace/master/figures/detail.png)](https://youtu.be/FxRoN_i7FLw)
   
 
