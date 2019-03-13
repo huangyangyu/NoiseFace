@@ -354,10 +354,11 @@ namespace caffe {
       }
 
       // print debug information
+      /*
       if (debug_ && iter_ % 100 == start_iter_ % 100)
       {
           char file_name[256];
-          sprintf(file_name, "/root/log/%s_%d.txt", debug_prefix_.c_str(), iter_);
+          sprintf(file_name, "/data/log/%s_%d.txt", debug_prefix_.c_str(), iter_);
           FILE *log = fopen(file_name, "w");
           
           fprintf(log, "debug iterations: %d\n", iter_);
@@ -411,6 +412,7 @@ namespace caffe {
           
           fclose(log);
       }
+      */
       
       // forward
       if (shield_forward_) return;
