@@ -68,11 +68,8 @@ namespace caffe {
     std::vector<Dtype> pcf_;
     int l_bin_id_;
     int r_bin_id_;
-    int m_bin_id_;
     int lt_bin_id_;
     int rt_bin_id_;
-    int t_bin_id_;
-    int s_bin_id_;
     std::vector<int> t_bin_ids_;
     Blob<Dtype> weights_;
 
