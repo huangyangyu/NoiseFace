@@ -66,11 +66,11 @@ namespace caffe {
     std::vector<Dtype> clean_pdf_;
     std::vector<Dtype> noise_pdf_;
     std::vector<Dtype> pcf_;
-    int l_bin_id_;
-    int r_bin_id_;
-    int lt_bin_id_;
-    int rt_bin_id_;
-    std::vector<int> t_bin_ids_;
+    int l_bin_id_;// left end point
+    int r_bin_id_;// right end point
+    int lt_bin_id_;// left extreme point
+    int rt_bin_id_;// right extreme point
+    std::vector<int> t_bin_ids_;// extreme points
     Blob<Dtype> weights_;
 
     //80:1.282, 90:1.645, 95:1.960, 99:2.576
