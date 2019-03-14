@@ -77,7 +77,6 @@ namespace caffe {
               // alpha = 0.5 => beta = 0.0, weight = weight2
               // alpha = 1.0 => beta = 1.0, weight = weight3
               weight = beta*(alpha<0.5) * weight1 + (1-beta) * weight2 + beta*(alpha>0.5) * weight3;//[0, 1]
-              //if (debug_) printf("%.2f weight1: %.2f, %.2f weight2: %.2f, %.2f weight3: %.2f, weight: %.2f\n", beta*(alpha<0.5), weight1, (1-beta), weight2, beta*(alpha>0.5), weight3, weight);
               break;
           default:
               break;
@@ -174,7 +173,7 @@ namespace caffe {
       
       if (this->phase_ != TRAIN) return;
 
-      // update probability density function
+      // update probability distribution/density function
       // add
       for (int i = 0; i < num; i++)
       {
@@ -255,24 +254,18 @@ namespace caffe {
       if (iter_ < start_iter_) return;
 
       int l_bin_id, r_bin_id, lt_bin_id, rt_bin_id;
-      // end point and top point of the distribution
+      // left/right end point of the distribution
       for (l_bin_id =     0; l_bin_id <= bins_ && pcf_[l_bin_id] <     0.5*s; ++l_bin_id);
       for (r_bin_id = bins_; r_bin_id >=     0 && pcf_[r_bin_id] > 1.0-0.5*s; --r_bin_id);
+      // Basically does not happen
       if (l_bin_id >= r_bin_id)
       {
-          if (debug_)
-          {
-              printf("error: l_bin_id: %d >= r_bin_id: %d %d\n", l_bin_id, r_bin_id, iter_);
-              for (int i = 0; i <= bins_; i++)
-              {
-                  printf("%.2f, %.2f\n", get_cos(i), filter_pdf[i]);
-              }
-          }
+          //printf("Oops!\n");
           skip_ = true;
           return;
       }
       int m_bin_id_ = (l_bin_id + r_bin_id) / 2;
-      // extreme point of the distribution
+      // extreme points of the distribution
       int t_bin_id_ = std::distance(filter_pdf.begin(), std::max_element(filter_pdf.begin(), filter_pdf.end()));
       std::vector<int>().swap(t_bin_ids_);
       for (int i = std::max(l_bin_id, 5); i <= std::min(r_bin_id, bins_-5); i++)
@@ -288,7 +281,7 @@ namespace caffe {
           }
       }
       if (t_bin_ids_.size() == 0) t_bin_ids_.push_back(t_bin_id_);
-      // left and right mountain of the distribution
+      // left/right extreme point of the distribution
       if (t_bin_id_ < m_bin_id_)
       {
           lt_bin_id = t_bin_id_;
