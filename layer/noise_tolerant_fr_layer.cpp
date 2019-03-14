@@ -65,22 +65,15 @@ namespace caffe {
       //weight3 = weight2;
 
       // merge weight
-      switch (func_)
-      {
-          case NoiseTolerantFRParameter_Func_AUTO_FIT:
-              alpha = clamp<Dtype>(get_cos(r_bin_id_), 0.0, 1.0);//[0, 1]
-              beta = 2.0 - 1.0 / (1.0 + exp(5-20*alpha)) - 1.0 / (1.0 + exp(20*alpha-15));//[0, 1]
-              // linear
-              //beta = fabs(2.0 * alpha - 1.0);//[0, 1]
+      alpha = clamp<Dtype>(get_cos(r_bin_id_), 0.0, 1.0);//[0, 1]
+      beta = 2.0 - 1.0 / (1.0 + exp(5-20*alpha)) - 1.0 / (1.0 + exp(20*alpha-15));//[0, 1]
+      // linear
+      //beta = fabs(2.0 * alpha - 1.0);//[0, 1]
 
-              // alpha = 0.0 => beta = 1.0, weight = weight1
-              // alpha = 0.5 => beta = 0.0, weight = weight2
-              // alpha = 1.0 => beta = 1.0, weight = weight3
-              weight = beta*(alpha<0.5) * weight1 + (1-beta) * weight2 + beta*(alpha>0.5) * weight3;//[0, 1]
-              break;
-          default:
-              break;
-      }
+      // alpha = 0.0 => beta = 1.0, weight = weight1
+      // alpha = 0.5 => beta = 0.0, weight = weight2
+      // alpha = 1.0 => beta = 1.0, weight = weight3
+      weight = beta*(alpha<0.5) * weight1 + (1-beta) * weight2 + beta*(alpha>0.5) * weight3;//[0, 1]
       // weight = 1.0;// normal method
       return weight;
   }
@@ -106,16 +99,15 @@ namespace caffe {
                                                     const vector<Blob<Dtype>*>& top)
   {
       const NoiseTolerantFRParameter& noise_tolerant_fr_param = this->layer_param_.noise_tolerant_fr_param();
-      func_ = noise_tolerant_fr_param.func();//1
-      shield_forward_ = noise_tolerant_fr_param.shield_forward();//2
-      start_iter_ = noise_tolerant_fr_param.start_iter();//3
-      bins_ = noise_tolerant_fr_param.bins();//4
-      slide_batch_num_ = noise_tolerant_fr_param.slide_batch_num();//5
-      value_low_ = noise_tolerant_fr_param.value_low();//6
-      value_high_ = noise_tolerant_fr_param.value_high();//7
-      debug_ = noise_tolerant_fr_param.debug();//8
-      debug_prefix_ = noise_tolerant_fr_param.debug_prefix();//9
-
+      shield_forward_ = noise_tolerant_fr_param.shield_forward();// 1
+      start_iter_ = noise_tolerant_fr_param.start_iter();// 2
+      bins_ = noise_tolerant_fr_param.bins();// 3
+      slide_batch_num_ = noise_tolerant_fr_param.slide_batch_num();// 4
+      value_low_ = noise_tolerant_fr_param.value_low();// 5
+      value_high_ = noise_tolerant_fr_param.value_high();// 6
+      debug_ = noise_tolerant_fr_param.debug();// 7
+      debug_prefix_ = noise_tolerant_fr_param.debug_prefix();// 8
+      
       CHECK_GE(start_iter_, 1) << "start iteration must be large than or equal to 1";
       CHECK_GE(bins_, 1) << "bins must be large than or equal to 1";
       CHECK_GE(slide_batch_num_, 1) << "slide batch num must be large than or equal to 1";
@@ -124,9 +116,9 @@ namespace caffe {
       iter_ = 0;
       noise_ratio_ = 0.0;
       l_bin_id_ = -1;
+      r_bin_id_ = -1;
       lt_bin_id_ = -1;
       rt_bin_id_ = -1;
-      r_bin_id_ = -1;
       //start_iter_ >?= slide_batch_num_;
       start_iter_ = std::max(start_iter_, slide_batch_num_);
       pdf_ = std::vector<Dtype>(bins_+1, Dtype(0.0));
@@ -257,7 +249,7 @@ namespace caffe {
       // left/right end point of the distribution
       for (l_bin_id =     0; l_bin_id <= bins_ && pcf_[l_bin_id] <     0.5*s; ++l_bin_id);
       for (r_bin_id = bins_; r_bin_id >=     0 && pcf_[r_bin_id] > 1.0-0.5*s; --r_bin_id);
-      // Basically does not happen
+      // almost never happen
       if (l_bin_id >= r_bin_id)
       {
           //printf("Oops!\n");
