@@ -8,13 +8,14 @@ This is the code for the paper
 
 
 ### Contents
-1. [Requirements](#requirements)
-1. [Dataset](#dataset)
-1. [Diagram](#diagram)
-1. [Performance](#performance)
-1. [Contact](#contact)
-1. [Citation](#citation)
-1. [License](#license)
+1. [Requirements](#Requirements)
+1. [Dataset](#Dataset)
+1. [How-to-use](#How-to-use)
+1. [Diagram](#Diagram)
+1. [Performance](#Performance)
+1. [Contact](#Contact)
+1. [Citation](#Citation)
+1. [License](#License)
 
 ### Requirements
 
@@ -33,7 +34,20 @@ Testing dataset:
 3. [**`CFP`**](http://www.cfpw.io/)
 4. [**`MegaFace`**](http://megaface.cs.washington.edu/)
 
-Both the training data and testing data are aligned by the method described in [**`SeqFace project`**](https://github.com/huangyangyu/SeqFace)
+Both the training data and testing data are aligned by the method described in [**`util.py`**](https://github.com/huangyangyu/SeqFace/blob/master/code/util.py)
+
+### How-to-use
+Firstly, you can train the network in noisy dataset as following steps:
+
+    step 1: add noise_tolerant_fr and relevant layers(at ./layers directory) to caffe project and recompile it.
+
+    step 2: download training dataset to ./data directory, and corrupt training dataset in different noise ratio which you can refer to ./code/gen_noise.py, then generate the lmdb file through caffe tool.
+
+    step 3: configure prototxt file in ./deploy directory.
+
+    step 4: run caffe command to train the network by using noisy dataset.
+
+After training, you can evaluate the model on testing dataset by using [**`evaluate.py`**](https://github.com/huangyangyu/SeqFace/blob/master/code/LFW/evaluate.py).
 
 ### Diagram
 
