@@ -271,9 +271,9 @@ namespace caffe {
           skip_ = true;
           return;
       }
-      m_bin_id_ = (l_bin_id + r_bin_id) / 2;
+      int m_bin_id_ = (l_bin_id + r_bin_id) / 2;
       // extreme point of the distribution
-      t_bin_id_ = std::distance(filter_pdf.begin(), std::max_element(filter_pdf.begin(), filter_pdf.end()));
+      int t_bin_id_ = std::distance(filter_pdf.begin(), std::max_element(filter_pdf.begin(), filter_pdf.end()));
       std::vector<int>().swap(t_bin_ids_);
       for (int i = std::max(l_bin_id, 5); i <= std::min(r_bin_id, bins_-5); i++)
       {
