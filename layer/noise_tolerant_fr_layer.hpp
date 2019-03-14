@@ -47,15 +47,14 @@ namespace caffe {
     int get_bin_id(const Dtype cos);
     Dtype get_cos(const int bin_id);
 
-    NoiseTolerantFRParameter_Func func_;
-    bool shield_forward_;
-    int start_iter_;
-    int bins_;
-    int slide_batch_num_;
-    Dtype value_low_;
-    Dtype value_high_;
-    bool debug_;
-    std::string debug_prefix_;
+    bool shield_forward_;// 1
+    int start_iter_;// 2
+    int bins_;// 3
+    int slide_batch_num_;// 4
+    Dtype value_low_;// 5
+    Dtype value_high_;// 6
+    bool debug_;// 7
+    std::string debug_prefix_;// 8
 
     int iter_;
     bool skip_;
