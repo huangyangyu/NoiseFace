@@ -8,16 +8,12 @@ message ArcfaceParameter {
 }
 
 message NoiseTolerantFRParameter {
-  enum Func {
-    AUTO_FIT = 1; 
-  }
-  optional Func func = 1 [default = AUTO_FIT];
-  optional bool shield_forward = 2 [default = false];
-  optional int32 start_iter = 3 [default = 1];
-  optional int32 bins = 4 [default = 200];
-  optional int32 slide_batch_num = 5 [default = 1000];
-  optional float value_low = 6 [default = -1.0];
-  optional float value_high = 7 [default = 1.0];
-  optional bool debug = 8 [default = false];
-  optional string debug_prefix = 9; 
+  optional bool shield_forward = 1 [default = false];
+  optional int32 start_iter = 2 [default = 1];
+  optional int32 bins = 3 [default = 200];
+  optional int32 slide_batch_num = 4 [default = 1000];
+  optional float value_low = 5 [default = -1.0];
+  optional float value_high = 6 [default = 1.0];
+  optional bool debug = 7 [default = false];
+  optional string debug_prefix = 8; 
 }
